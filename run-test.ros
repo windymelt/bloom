@@ -1,0 +1,18 @@
+#!/bin/sh
+#|-*- mode:lisp -*-|#
+#|
+exec ros -Q -- $0 "$@"
+|#
+(progn ;;init forms
+  (ros:ensure-asdf)
+  #+quicklisp (ql:quickload '(:cl-annot :bloom :prove) :silent t)
+  )
+
+(defpackage :ros.script.run-test.3723811039
+  (:use :cl))
+(in-package :ros.script.run-test.3723811039)
+
+(defun main (&rest argv)
+  (declare (ignorable argv))
+  (prove:run #P"./t/bloom.lisp"))
+;;; vim: set ft=lisp lisp:
