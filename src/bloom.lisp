@@ -46,6 +46,11 @@
             always (eq (elt bloom (nth-hash n hasha hashb len)) 1)))))
 
 @export
+(defun bloom-subset-p (subset-like parent)
+  "Consider whether SUBSET-LIKE is subset of PARENT."
+  (equal parent (bit-ior subset-like parent)))
+
+@export
 (defun bloom-clr (bloom)
   "Clear BLOOM filter. Destructive function."
   (loop for n from 0 below (length bloom)
